@@ -23,7 +23,7 @@ public class Main {
 
             clientSocket
                     .getOutputStream()
-                    .write("HTTP/1.1 200 OK\r\nAccess-Control-Allow-Origin: *\r\nConnection: close\r\n{OK}".getBytes(StandardCharsets.UTF_8));
+                    .write("HTTP/1.1 200 OK\r\n\r\n".getBytes(StandardCharsets.UTF_8));
 
             clientSocket.close();
             System.out.println("accepted new connection");
