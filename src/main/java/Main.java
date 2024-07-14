@@ -36,7 +36,7 @@ public class Main {
             System.out.println("path -> " + path);
             System.out.println("httpVersion -> " + httpVersion);
 
-            String response = "HTTP/1.1 404 NOTFOUND\r\n\r\n";
+            String response = "HTTP/1.1 404 Not Found\r\n\r\n";
 
             if (Objects.equals(path, "/")) {
                 response = "HTTP/1.1 200 OK\r\n\r\n";
