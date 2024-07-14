@@ -30,17 +30,13 @@ public class Main {
 
             String method = strings[0];
             String path = strings[1];
-            String httpVersion = strings[1];
+            String httpVersion = strings[2];
 
             System.out.println("method -> " + method);
             System.out.println("path -> " + path);
             System.out.println("httpVersion -> " + httpVersion);
 
-            String response = "HTTP/1.1 404 Not Found\r\n\r\n";
-
-            if (Objects.equals(path, "/")) {
-                response = "HTTP/1.1 200 OK\r\n\r\n";
-            }
+            String response = getResponse(path);
 
             clientSocket
                     .getOutputStream()
@@ -52,5 +48,21 @@ public class Main {
         } catch (IOException e) {
             System.out.println("IOException: " + e.getMessage());
         }
+    }
+
+    private static String getResponse(String path) {
+        String response;
+        if (path.startsWith("/echo")) {
+            int echoIndex = path.indexOf("/echo");
+            String substring = path.substring(echoIndex + 1);
+            response = "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 3\r\n\r\n" + substring + "\n";
+        } else {
+            if (Objects.equals(path, "/")) {
+                response = "HTTP/1.1 200 OK\r\n\r\n";
+            } else {
+                response = "HTTP/1.1 404 Not Found\r\n\r\n";
+            }
+        }
+        return response;
     }
 }
