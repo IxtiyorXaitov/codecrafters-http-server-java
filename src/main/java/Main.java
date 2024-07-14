@@ -53,8 +53,7 @@ public class Main {
     private static String getResponse(String path) {
         String response;
         if (path.startsWith("/echo")) {
-            int echoIndex = path.indexOf("/echo");
-            String substring = path.substring(echoIndex + 1);
+            String substring = path.substring(6);
             response = "HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nContent-Length: 3\r\n\r\n" + substring + "\n";
         } else {
             if (Objects.equals(path, "/")) {
